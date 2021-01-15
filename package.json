@@ -1,0 +1,35 @@
+{
+  "name": "opaque-flow",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-flow": "^7.12.1",
+    "flow-bin": "^0.142.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-flow",
+      [
+        "@babel/preset-env",
+        {
+          "shippedProposals": true,
+          "targets": [
+            "last 2 Chrome versions",
+            "last 2 Firefox versions",
+            "node 12"
+          ]
+        }
+      ]
+    ]
+  },
+  "scripts": {
+    "flow": "flow",
+    "compile": "babel --verbose src/ -d lib",
+    "build": "yarn flow && yarn compile",
+    "start": "yarn build && node lib/index.js"
+  }
+}
